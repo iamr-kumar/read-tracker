@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
 
 void main() {
   runApp(const MyApp());
@@ -21,8 +22,19 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  double _percent = 0.1;
+
+  String _getPercent() {
+    return (_percent * 100).round().toString();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,37 +47,27 @@ class HomeScreen extends StatelessWidget {
         children: [
           const SizedBox(height: 40),
           Container(
-              width: double.infinity,
-              height: 300,
-              margin: const EdgeInsets.symmetric(horizontal: 20),
-              padding: const EdgeInsets.all(20),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: Container(
-                height: 200,
-                width: 200,
-                decoration: const BoxDecoration(
-                    color: Colors.blue, shape: BoxShape.circle),
-                alignment: Alignment.center,
-                child: Container(
-                  height: 180,
-                  width: 180,
-                  decoration: const BoxDecoration(
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                  ),
-                  alignment: Alignment.center,
-                  child: const Text('90%',
-                      style: TextStyle(
-                          fontSize: 40,
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold)),
-                ),
-              )),
+            width: double.infinity,
+            alignment: Alignment.center,
+            child: CircularPercentIndicator(
+              radius: 150.0,
+              lineWidth: 15.0,
+              percent: _percent,
+              center: Text(_getPercent() + '%',
+                  style: const TextStyle(
+                      fontSize: 35, fontWeight: FontWeight.bold)),
+              backgroundColor: Colors.grey,
+              progressColor: Colors.blue,
+            ),
+          ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => setState(() {
+          _percent = _percent + 0.1 >= 1.0 ? 0.1 : _percent + 0.1;
+          
+        }),
+        child: const Icon(Icons.add),
       ),
     );
   }
