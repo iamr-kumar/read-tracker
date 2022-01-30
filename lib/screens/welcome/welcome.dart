@@ -33,12 +33,12 @@ class WelcomeScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 32,
+                    fontSize: 36,
                     color: MyColors.textBlue),
               ),
             ),
             SizedBox(
-              height: devHeight * 0.05,
+              height: devHeight * 0.02,
             ),
             const SizedBox(
                 width: 350,
@@ -47,7 +47,7 @@ class WelcomeScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 18, color: MyColors.textGrey),
                 )),
-            SizedBox(height: devHeight * 0.05),
+            SizedBox(height: devHeight * 0.08),
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Row(
