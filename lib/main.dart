@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:read_tracker/screens/welcome/welcome.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
       ),
       home: const HomeScreen(),
     );
@@ -38,37 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Read Tracker'),
-      ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          const SizedBox(height: 40),
-          Container(
-            width: double.infinity,
-            alignment: Alignment.center,
-            child: CircularPercentIndicator(
-              radius: 150.0,
-              lineWidth: 15.0,
-              percent: _percent,
-              center: Text(_getPercent() + '%',
-                  style: const TextStyle(
-                      fontSize: 35, fontWeight: FontWeight.bold)),
-              backgroundColor: Colors.grey,
-              progressColor: Colors.blue,
-            ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => setState(() {
-          _percent = _percent + 0.1 >= 1.0 ? 0.1 : _percent + 0.1;
-          
-        }),
-        child: const Icon(Icons.add),
-      ),
-    );
+    return const WelcomeScreen();
   }
 }
